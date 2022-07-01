@@ -1,0 +1,47 @@
+@import '../../globals/variables.scss';
+
+
+
+.balance {
+    width: 90%;
+    max-width: 500px;
+    background-color: $Soft-red;
+    padding: 1.7em;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-text {
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        color: #fff;
+
+
+        .current-balance {
+            font-size: 1.8rem;
+            font-weight: $w-bold;
+        }
+    }
+}
+
+.circles{
+    display: flex;
+
+    .circle {
+        border-radius: 50%;
+        width: 2.5em;
+        aspect-ratio: 1 / 1;
+    }
+
+    .circle2 {
+        background-color: $Dark-brown;
+    }
+
+    .circle1 {
+        border: 2px solid #fff;
+        background-color: transparent;
+        transform: translateX(1.25em);
+    }
+}
