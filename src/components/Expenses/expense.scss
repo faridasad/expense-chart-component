@@ -1,95 +1,99 @@
-@import '../../globals/variables.scss';
-
+@import "../../globals/variables.scss";
 
 .expense {
-    width: 90%;
-    max-width: 500px;
-    background-color: #fff;
-    border-radius: 1em;
-    padding: 1.7em;
-    display: flex;
-    align-items: center;
+  width: 90%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 1em;
+  padding: 1.7em;
+  display: flex;
+  align-items: center;
 }
 
 .e-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  &-header {
+    font-size: 1.9em;
+    font-weight: $w-bold;
+  }
+
+  &-graph {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.7em;
+
+    .amount-info {
+      visibility: hidden;
+      background-color: $Dark-brown;
+      color: #fff;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    .amount-info-active {
+      visibility: visible;
+    }
+
+    .graph-active {
+      opacity: 0.6;
+    }
+
+    .graph-col {
+      min-width: 0;
+      width: 3.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .graph {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      border-radius: 0.2em;
+      background-color: $Soft-red;
+      width: 100%;
+      height: 3.5em;
+      position: relative;
+    }
+
+    .graph[data-max="max"] {
+      background-color: $Cyan;
+    }
+    .day {
+      opacity: 0.8;
+    }
+  }
+
+  &-footer {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 2.5em;
-
-
-    &-graph {
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 1.5em;
-     
-        .graph {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-                border-radius: .5em;
-                background-color: $Soft-red;
-                width: 2.5em;
-                height: 3.5em;
-                position: relative;
-
-                
-            }
-
-            .amount-info{
-                display: none;
-                position: absolute;
-                top: -2em;
-                background-color: $Dark-brown;
-                color: #fff;
-                padding: .3em .7em;
-            }
-
-            .amount-info-active {
-                display: block;
-            }
-
-        .graph-active {
-            opacity: 0.4;
-        }
-
-        .day {
-                opacity: 1;
-                position: absolute;
-                bottom: -1.5em;
-            }
+    align-items: center;
+    justify-content: space-between;
+    p {
+      font-size: 0.9em;
     }
-    
 
-    &-footer {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        p {
-            font-size: .9em;
-        }
-
-
-
-        .month-total {
-            
-           
-
-            .month-expense {
-                font-weight: $w-bold;
-                font-size: 2.3em;
-            }
-        }
-
-        .last-month {
-            text-align: right;
-           
-            
-            &-rate {
-                font-weight: $w-bold;
-            }
-        }
+    .month-total {
+      .month-expense {
+        font-weight: $w-bold;
+        font-size: 2.3em;
+      }
     }
+
+    .last-month {
+      text-align: right;
+
+      &-rate {
+        font-weight: $w-bold;
+      }
+    }
+  }
 }
