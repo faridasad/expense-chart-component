@@ -3,20 +3,7 @@ import "./expense.scss";
 import expenseData from "../../data/data.json";
 
 const Expense = () => {
-  const [graphs, setGraphs] = useState(new Set());
-
-  const selectGraph = (graph) => {
-    setGraphs((graphs) => {
-      if (!graphs.has(graph)) {
-        graphs = new Set(graphs);
-        graphs.add(graph);
-      } else if (graphs.has(graph)) {
-        graphs = new Set(graphs);
-        graphs.delete(graph);
-      }
-      return graphs;
-    });
-  };
+  const [selectedBars, setSelectedBars] = useState([]);
 
   const maxAmount = expenseData.reduce(
     (max, graph) => (max = max > graph.amount ? max : graph.amount),
@@ -33,7 +20,7 @@ const Expense = () => {
               <div className="graph-col" key={index}>
                 <div
                   className={
-                    graphs.has(graph)
+                    selectedBars?.includes(graph)
                       ? "amount-info amount-info-active"
                       : "amount-info"
                   }
@@ -41,9 +28,19 @@ const Expense = () => {
                   ${graph.amount}
                 </div>
                 <div
-                  className={graphs.has(graph) ? "graph graph-active" : "graph"}
+                  className={
+                    selectedBars?.includes(graph)
+                      ? "graph graph-active"
+                      : "graph"
+                  }
                   data-max={graph.amount === maxAmount ? "max" : ""}
-                  onClick={() => selectGraph(graph)}
+                  onClick={() => {
+                    setSelectedBars((prev) =>
+                      prev.find((b) => b.id === graph.id)
+                        ? prev.filter((g) => g.id !== graph.id)
+                        : [...prev, graph]
+                    );
+                  }}
                   style={{ height: `${graph.amount * 3}px` }}
                 ></div>
                 <div className="day">{graph.day}</div>
